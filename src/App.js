@@ -22,6 +22,19 @@ function App() {
         setTodolist([...todoList, task])
     }
 
+    const completeTask = (id) => {
+        const updatedList = todoList.map((task) => {
+            if (task.id === id) {
+                return { ...task, completed: true };
+            }
+            else {
+                return task;
+            }
+        })
+
+        setTodolist(updatedList);
+    }
+
     const deleteTask = (id) => {
         const newList = todoList.filter((task) => {
             return task.id !== id
@@ -43,7 +56,14 @@ function App() {
                     {
                         todoList.map((task) => {
                             return (
-                                <Task id={task.id} name={task.name} dateAdded={task.dateAdded} deleteTask={deleteTask} />
+                                <Task
+                                    id={task.id}
+                                    name={task.name}
+                                    dateAdded={task.dateAdded}
+                                    completed={task.completed}
+                                    completeTask={completeTask}
+                                    deleteTask={deleteTask}
+                                />
                             )
                         })
                     }
