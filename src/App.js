@@ -11,7 +11,7 @@ function App() {
         setNewTask(event.target.value);
     }
 
-    const addTask = () => {
+    const addTask = (e) => {
         const task = {
             id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
             name: newTask,
@@ -20,6 +20,7 @@ function App() {
         };
 
         setTodolist([...todoList, task])
+        setNewTask('')
     }
 
     const completeTask = (id) => {
@@ -46,7 +47,7 @@ function App() {
         <div className="App">
             <div className="addTask">
                 <h1>ToDo List</h1>
-                <input type="text" onChange={handleChange}></input>
+                <input type="text" onChange={handleChange} value={newTask}></input>
                 <button onClick={addTask}>Add Task</button>
 
             </div>
